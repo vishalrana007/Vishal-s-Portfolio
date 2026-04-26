@@ -28,7 +28,14 @@ export default async function HomePage() {
     <div className="bg-[#050505] text-white">
       <section className="relative min-h-screen overflow-hidden">
         {hero.backgroundImage ? (
-          <Image src={hero.backgroundImage} alt={hero.title || siteSettings.siteName} fill priority className="object-cover" />
+          <Image
+            src={hero.backgroundImage}
+            alt={hero.title || siteSettings.siteName}
+            fill
+            priority
+            sizes="100vw"
+            className="object-cover"
+          />
         ) : (
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_left,#2a1408,transparent_34%),linear-gradient(135deg,#110a06_0%,#050505_60%,#130904_100%)]" />
         )}

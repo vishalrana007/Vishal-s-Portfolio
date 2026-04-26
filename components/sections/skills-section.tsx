@@ -23,7 +23,13 @@ export function SkillsSection({ skills }: { skills: Skill[] }) {
             <article className="overflow-hidden border border-black/10 bg-white/55 backdrop-blur transition duration-300 hover:-translate-y-1 hover:shadow-[0_18px_40px_rgba(15,23,42,0.08)]">
               <div className="relative aspect-[4/3] overflow-hidden bg-[linear-gradient(135deg,#eff6ff,#fff7ed)]">
                 {skill.icon ? (
-                  <Image src={skill.icon} alt={skill.name} fill className="object-contain transition duration-700 group-hover:scale-[1.04]" />
+                  <Image
+                    src={skill.icon}
+                    alt={skill.name}
+                    fill
+                    sizes="(max-width: 639px) 100vw, (max-width: 1279px) 50vw, 33vw"
+                    className="object-contain transition duration-700 group-hover:scale-[1.04]"
+                  />
                 ) : null}
                 <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(255,255,255,0.08),rgba(20,24,30,0.45)_100%)]" />
                 <div className="absolute left-0 right-0 top-0 flex items-start justify-between p-4 text-[11px] uppercase tracking-[0.18em] text-white/78">

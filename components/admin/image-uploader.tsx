@@ -37,7 +37,7 @@ export function ImageUploader({
     <div className="space-y-3">
       {value ? (
         <div className="relative h-40 w-full overflow-hidden rounded-xl border border-white/10">
-          <Image src={value} alt="preview" fill className="object-cover" />
+          <Image src={value} alt="preview" fill sizes="(max-width: 767px) 100vw, 640px" className="object-cover" />
         </div>
       ) : null}
       <input

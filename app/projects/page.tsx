@@ -17,7 +17,7 @@ export default async function ProjectsPage() {
       <section className="relative overflow-hidden">
         <div className="relative min-h-[70vh]">
           {heroImage ? (
-            <Image src={heroImage} alt={siteSettings.projects.heading} fill priority className="object-cover" />
+            <Image src={heroImage} alt={siteSettings.projects.heading} fill priority sizes="100vw" className="object-cover" />
           ) : (
             <div className="absolute inset-0 bg-[linear-gradient(135deg,#23140a,#050505)]" />
           )}

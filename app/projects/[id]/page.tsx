@@ -23,7 +23,7 @@ export default async function ProjectDetailsPage(props: PageProps<"/projects/[id
     <div className="bg-[#050505] text-white">
       <section className="relative min-h-[78vh] overflow-hidden">
         {project.imageUrls[0] ? (
-          <Image src={project.imageUrls[0]} alt={project.title} fill priority className="object-cover" />
+          <Image src={project.imageUrls[0]} alt={project.title} fill priority sizes="100vw" className="object-cover" />
         ) : (
           <div className="absolute inset-0 bg-[linear-gradient(135deg,#23140a,#050505)]" />
         )}
@@ -83,7 +83,13 @@ export default async function ProjectDetailsPage(props: PageProps<"/projects/[id
             <div className="grid gap-4 pt-4 md:grid-cols-2">
               {project.imageUrls.filter(Boolean).slice(1).map((imageUrl, index) => (
                 <div key={`${imageUrl}-${index}`} className="relative aspect-[4/3] overflow-hidden rounded-[24px] border border-white/10">
-                  <Image src={imageUrl} alt={`${project.title} gallery ${index + 2}`} fill className="object-cover" />
+                  <Image
+                    src={imageUrl}
+                    alt={`${project.title} gallery ${index + 2}`}
+                    fill
+                    sizes="(max-width: 767px) 100vw, 50vw"
+                    className="object-cover"
+                  />
                 </div>
               ))}
             </div>

@@ -14,7 +14,7 @@ export function HeroSection({ hero }: { hero: HeroContent }) {
     <section className="relative min-h-[92vh] overflow-hidden border-b border-black/8">
       <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(255,251,245,0.18),rgba(255,251,245,0.72)_100%)]" />
       {hero.backgroundImage ? (
-        <Image src={hero.backgroundImage} alt="" fill priority className="object-cover" />
+        <Image src={hero.backgroundImage} alt="" fill priority sizes="100vw" className="object-cover" />
       ) : null}
       <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(12,18,28,0.28),rgba(12,18,28,0.08)_24%,rgba(255,248,240,0.18)_58%,rgba(255,248,240,0.94)_100%)]" />
       <div className="relative mx-auto flex min-h-[92vh] w-full max-w-7xl flex-col px-5 pb-10 pt-6 md:px-8 md:pb-14 md:pt-8">
@@ -77,7 +77,7 @@ export function HeroSection({ hero }: { hero: HeroContent }) {
         </div>
         {hero.profileImage ? (
           <div className="absolute bottom-10 right-5 hidden h-28 w-24 overflow-hidden rounded-sm border border-white/30 shadow-[0_18px_40px_rgba(0,0,0,0.22)] md:block md:right-8 md:h-40 md:w-32">
-            <Image src={hero.profileImage} alt={hero.title || "Profile"} fill className="object-cover" />
+            <Image src={hero.profileImage} alt={hero.title || "Profile"} fill sizes="128px" className="object-cover" />
           </div>
         ) : null}
       </div>

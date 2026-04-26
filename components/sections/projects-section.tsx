@@ -23,7 +23,13 @@ export function ProjectsSection({ projects }: { projects: Project[] }) {
             <Link href={`/projects/${project.id}`} className="group block">
               <div className="relative aspect-[4/5] overflow-hidden bg-stone-100">
                 {project.imageUrls[0] ? (
-                  <Image src={project.imageUrls[0]} alt={project.title} fill className="object-cover transition duration-700 group-hover:scale-[1.03]" />
+                  <Image
+                    src={project.imageUrls[0]}
+                    alt={project.title}
+                    fill
+                    sizes="(max-width: 767px) 100vw, 50vw"
+                    className="object-cover transition duration-700 group-hover:scale-[1.03]"
+                  />
                 ) : (
                   <div className="flex h-full items-center justify-center text-zinc-400">No image</div>
                 )}

@@ -14,6 +14,7 @@ export function ProjectCard({ project }: { project: Project }) {
             src={project.imageUrls[0]}
             alt={project.title}
             fill
+            sizes="(max-width: 767px) 100vw, (max-width: 1279px) 50vw, 25vw"
             className="object-cover transition duration-700 group-hover:scale-[1.04]"
           />
         ) : (

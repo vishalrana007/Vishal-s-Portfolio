@@ -12,7 +12,13 @@ export function SkillCard({ skill }: { skill: Skill }) {
         {skill.icon ? (
           <div className="absolute inset-0 flex items-center justify-center p-8">
             <div className="relative h-28 w-28 md:h-32 md:w-32">
-              <Image src={skill.icon} alt={skill.name} fill className="object-contain opacity-90 transition duration-700 group-hover:scale-[1.04]" />
+              <Image
+                src={skill.icon}
+                alt={skill.name}
+                fill
+                sizes="128px"
+                className="object-contain opacity-90 transition duration-700 group-hover:scale-[1.04]"
+              />
             </div>
           </div>
         ) : (

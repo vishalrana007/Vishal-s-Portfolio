@@ -1,10 +1,10 @@
 import { NextResponse } from "next/server";
 import { requireAdmin } from "@/lib/api-auth";
-import { createCollectionDocument, createMessage, listCollection, listMessages, type PublicCollection } from "@/lib/portfolio-repository";
+import { createCollectionDocument, createMessage, createQuery, listCollection, listMessages, listQueries, type PublicCollection } from "@/lib/portfolio-repository";
 
 export const runtime = "nodejs";
 
-const publicCollections = new Set<PublicCollection>(["skills", "projects", "experience"]);
+const publicCollections = new Set<PublicCollection>(["skills", "projects", "experience", "current-projects"]);
 
 function isPublicCollection(value: string): value is PublicCollection {
   return publicCollections.has(value as PublicCollection);
@@ -18,6 +18,12 @@ export async function GET(request: Request, context: RouteContext<"/api/[collect
       const authError = await requireAdmin(request);
       if (authError) return authError;
       return NextResponse.json(await listMessages());
+    }
+
+    if (collection === "queries") {
+      const authError = await requireAdmin(request);
+      if (authError) return authError;
+      return NextResponse.json(await listQueries());
     }
 
     if (!isPublicCollection(collection)) {
@@ -39,6 +45,11 @@ export async function POST(request: Request, context: RouteContext<"/api/[collec
 
     if (collection === "messages") {
       const id = await createMessage(payload as { name: string; email: string; subject: string; message: string });
+      return NextResponse.json({ id }, { status: 201 });
+    }
+
+    if (collection === "queries") {
+      const id = await createQuery(payload as { name: string; email: string; subject: string; query: string });
       return NextResponse.json({ id }, { status: 201 });
     }
 

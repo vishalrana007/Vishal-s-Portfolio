@@ -9,7 +9,7 @@ import {
 
 export const runtime = "nodejs";
 
-const publicCollections = new Set<PublicCollection>(["skills", "projects", "experience"]);
+const publicCollections = new Set<PublicCollection>(["skills", "projects", "experience", "current-projects"]);
 
 function isPublicCollection(value: string): value is PublicCollection {
   return publicCollections.has(value as PublicCollection);

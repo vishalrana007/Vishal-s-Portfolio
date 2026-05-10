@@ -5,9 +5,11 @@ import type {
   AboutContent,
   ContactContent,
   ContactMessage,
+  CurrentProject,
   Experience,
   HeroContent,
   Project,
+  QuerySubmission,
   SiteSettings,
   Skill,
 } from "@/types/content";
@@ -59,6 +61,14 @@ export const defaultSiteSettings: SiteSettings = {
     limit: 4,
     viewAllText: "View all projects",
   },
+  currentWork: {
+    visible: true,
+    label: "Now building",
+    heading: "Currently working on",
+    description: "A quick look at the products, experiments, and builds that are actively in progress right now.",
+    limit: 3,
+    viewAllText: "",
+  },
   skills: {
     visible: true,
     label: "Skills",
@@ -85,7 +95,7 @@ export const defaultSiteSettings: SiteSettings = {
   footerText: "Built to present selected work with cinematic clarity.",
 };
 
-export type PublicCollection = "skills" | "projects" | "experience";
+export type PublicCollection = "skills" | "projects" | "experience" | "current-projects";
 export type ContentSection = "hero" | "about" | "contacts" | "siteSettings";
 
 export async function getSingleton<T>(collectionName: string, fallback: T): Promise<T> {
@@ -134,14 +144,28 @@ export async function createMessage(payload: Omit<ContactMessage, "id" | "create
   return snapshot.id;
 }
 
+export async function listQueries(): Promise<QuerySubmission[]> {
+  const snapshot = await adminDb.collection("queries").orderBy("createdAt", "desc").get();
+  return snapshot.docs.map((item) => ({ id: item.id, ...item.data() }) as QuerySubmission);
+}
+
+export async function createQuery(payload: Omit<QuerySubmission, "id" | "createdAt">) {
+  const snapshot = await adminDb.collection("queries").add({
+    ...payload,
+    createdAt: new Date().toISOString(),
+  });
+  return snapshot.id;
+}
+
 export async function getPortfolioData() {
-  const [hero, about, contact, siteSettings, skills, projects, experience] = await Promise.all([
+  const [hero, about, contact, siteSettings, skills, projects, currentProjects, experience] = await Promise.all([
     getSingleton("hero", defaultHero),
     getSingleton("about", defaultAbout),
     getSingleton("contacts", defaultContact),
     getSingleton("siteSettings", defaultSiteSettings),
     listCollection<Skill>("skills"),
     listCollection<Project>("projects"),
+    listCollection<CurrentProject>("current-projects"),
     listCollection<Experience>("experience"),
   ]);
 
@@ -152,6 +176,7 @@ export async function getPortfolioData() {
     siteSettings,
     skills,
     projects,
+    currentProjects,
     experience,
   };
 }

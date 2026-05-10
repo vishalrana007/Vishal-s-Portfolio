@@ -39,6 +39,7 @@ export type SiteSettings = {
     contact: string;
   };
   projects: HomeSectionConfig;
+  currentWork: HomeSectionConfig;
   skills: HomeSectionConfig;
   experience: HomeSectionConfig;
   contact: ContactSectionSettings;
@@ -76,6 +77,13 @@ export type Project = {
   featured: boolean;
 };
 
+export type CurrentProject = {
+  id: string;
+  title: string;
+  overview: string;
+  imageUrl: string;
+};
+
 export type Experience = {
   id: string;
   company: string;
@@ -100,5 +108,14 @@ export type ContactMessage = {
   email: string;
   subject: string;
   message: string;
+  createdAt: string;
+};
+
+export type QuerySubmission = {
+  id: string;
+  name: string;
+  email: string;
+  subject: string;
+  query: string;
   createdAt: string;
 };

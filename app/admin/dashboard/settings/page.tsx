@@ -29,6 +29,14 @@ const initialSettings: SiteSettings = {
     limit: 4,
     viewAllText: "",
   },
+  currentWork: {
+    visible: true,
+    label: "",
+    heading: "",
+    description: "",
+    limit: 3,
+    viewAllText: "",
+  },
   skills: {
     visible: true,
     label: "",
@@ -55,7 +63,7 @@ const initialSettings: SiteSettings = {
   footerText: "",
 };
 
-type SectionKey = "projects" | "skills" | "experience";
+type SectionKey = "projects" | "currentWork" | "skills" | "experience";
 
 function SectionEditor({
   title,
@@ -181,6 +189,7 @@ export default function SettingsAdminPage() {
       </Card>
 
       <SectionEditor title="Projects Preview" value={data.projects} onChange={(next) => updateSection("projects", next)} />
+      <SectionEditor title="Current Work Preview" value={data.currentWork} onChange={(next) => updateSection("currentWork", next)} />
       <SectionEditor title="Skills Preview" value={data.skills} onChange={(next) => updateSection("skills", next)} />
       <SectionEditor title="Experience Preview" value={data.experience} onChange={(next) => updateSection("experience", next)} />
 

@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { portfolioService } from "@/services/firestore";
-import type { AboutContent, ContactContent, Experience, HeroContent, Project, SiteSettings, Skill } from "@/types/content";
+import type { AboutContent, ContactContent, CurrentProject, Experience, HeroContent, Project, SiteSettings, Skill } from "@/types/content";
 
 type PortfolioData = {
   hero: HeroContent;
@@ -11,6 +11,7 @@ type PortfolioData = {
   siteSettings: SiteSettings;
   skills: Skill[];
   projects: Project[];
+  currentProjects: CurrentProject[];
   experience: Experience[];
 };
 
@@ -34,6 +35,7 @@ const initialState: PortfolioData = {
     aboutLabel: "",
     navigation: { home: "", projects: "", skills: "", experience: "", contact: "" },
     projects: { visible: true, label: "", heading: "", description: "", limit: 4, viewAllText: "" },
+    currentWork: { visible: true, label: "", heading: "", description: "", limit: 3, viewAllText: "" },
     skills: { visible: true, label: "", heading: "", description: "", limit: 6, viewAllText: "" },
     experience: { visible: true, label: "", heading: "", description: "", limit: 3, viewAllText: "" },
     contact: { visible: true, label: "", heading: "", description: "", ctaLabel: "" },
@@ -41,6 +43,7 @@ const initialState: PortfolioData = {
   },
   skills: [],
   projects: [],
+  currentProjects: [],
   experience: [],
 };
 
@@ -53,9 +56,9 @@ export function usePortfolioData() {
     let mounted = true;
     portfolioService
       .getAll()
-      .then(({ hero, about, contact, siteSettings, skills, projects, experience }) => {
+      .then(({ hero, about, contact, siteSettings, skills, projects, currentProjects, experience }) => {
         if (!mounted) return;
-        setData({ hero, about, contact, siteSettings, skills, projects, experience });
+        setData({ hero, about, contact, siteSettings, skills, projects, currentProjects, experience });
       })
       .catch((err) => {
         console.error("Failed to load portfolio data from Firestore.", err);

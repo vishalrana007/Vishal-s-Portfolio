@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ContactBlock } from "@/components/site/contact-block";
+import { CurrentProjectCard } from "@/components/site/current-project-card";
 import { ExperienceCard } from "@/components/site/experience-card";
 import { ProjectCard } from "@/components/site/project-card";
 import { PublicFooter } from "@/components/site/public-footer";
@@ -12,11 +13,14 @@ import { getPortfolioData } from "@/lib/portfolio-repository";
 export const runtime = "nodejs";
 
 export default async function HomePage() {
-  const { hero, about, contact, siteSettings, skills, projects, experience } = await getPortfolioData();
+  const { hero, about, contact, siteSettings, skills, projects, currentProjects, experience } = await getPortfolioData();
 
   const homepageProjects = [...projects]
     .sort((a, b) => Number(b.featured) - Number(a.featured) || a.title.localeCompare(b.title))
     .slice(0, Math.max(1, siteSettings.projects.limit));
+  const homepageCurrentProjects = [...currentProjects]
+    .sort((a, b) => a.title.localeCompare(b.title))
+    .slice(0, Math.max(1, siteSettings.currentWork.limit));
   const homepageSkills = [...skills]
     .sort((a, b) => b.level - a.level || a.name.localeCompare(b.name))
     .slice(0, Math.max(1, siteSettings.skills.limit));
@@ -109,6 +113,21 @@ export default async function HomePage() {
             <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-4">
               {homepageProjects.map((project) => (
                 <ProjectCard key={project.id} project={project} />
+              ))}
+            </div>
+          </section>
+        ) : null}
+
+        {siteSettings.currentWork.visible && homepageCurrentProjects.length ? (
+          <section className="space-y-10">
+            <SectionIntro
+              label={siteSettings.currentWork.label}
+              heading={siteSettings.currentWork.heading}
+              description={siteSettings.currentWork.description}
+            />
+            <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+              {homepageCurrentProjects.map((item) => (
+                <CurrentProjectCard key={item.id} item={item} />
               ))}
             </div>
           </section>

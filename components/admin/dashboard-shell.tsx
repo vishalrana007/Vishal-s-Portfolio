@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { BriefcaseBusiness, FileStack, LayoutTemplate, LogOut, Mail, MessageSquareMore, Settings2, Sparkles, UserRound } from "lucide-react";
+import { BriefcaseBusiness, FileStack, LayoutTemplate, LogOut, Mail, MessageSquareMore, Search, Settings2, Sparkles, UserRound } from "lucide-react";
 import { signOut } from "firebase/auth";
 import { auth } from "@/lib/firebase";
 import { cn } from "@/lib/utils";
@@ -14,9 +14,11 @@ const navItems = [
   { href: "/admin/dashboard/about", label: "About", icon: UserRound },
   { href: "/admin/dashboard/skills", label: "Skills", icon: Sparkles },
   { href: "/admin/dashboard/projects", label: "Projects", icon: BriefcaseBusiness },
+  { href: "/admin/dashboard/current-projects", label: "Current Work", icon: BriefcaseBusiness },
   { href: "/admin/dashboard/experience", label: "Experience", icon: FileStack },
   { href: "/admin/dashboard/contact", label: "Contact", icon: Mail },
   { href: "/admin/dashboard/messages", label: "Messages", icon: MessageSquareMore },
+  { href: "/admin/dashboard/queries", label: "Queries", icon: Search },
 ];
 
 export function DashboardShell({ children }: { children: React.ReactNode }) {

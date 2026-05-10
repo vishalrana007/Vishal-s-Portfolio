@@ -5,9 +5,11 @@ import type {
   AboutContent,
   ContactContent,
   ContactMessage,
+  CurrentProject,
   Experience,
   HeroContent,
   Project,
+  QuerySubmission,
   SiteSettings,
   Skill,
 } from "@/types/content";
@@ -19,6 +21,7 @@ type PortfolioData = {
   siteSettings: SiteSettings;
   skills: Skill[];
   projects: Project[];
+  currentProjects: CurrentProject[];
   experience: Experience[];
 };
 
@@ -116,8 +119,24 @@ export const experienceService = {
   getById: (id: string) => request<Experience>(`/api/experience/${id}`),
 };
 
+export const currentProjectsService = {
+  list: () => request<CurrentProject[]>("/api/current-projects"),
+  create: (payload: Omit<CurrentProject, "id">) =>
+    request<{ id: string }>("/api/current-projects", { method: "POST", body: JSON.stringify(payload) }, true),
+  update: (id: string, payload: Omit<CurrentProject, "id">) =>
+    request<{ ok: true }>(`/api/current-projects/${id}`, { method: "PUT", body: JSON.stringify(payload) }, true),
+  remove: (id: string) => request<void>(`/api/current-projects/${id}`, { method: "DELETE" }, true),
+  getById: (id: string) => request<CurrentProject>(`/api/current-projects/${id}`),
+};
+
 export const messagesService = {
   list: () => request<ContactMessage[]>("/api/messages", undefined, true),
   create: (payload: Omit<ContactMessage, "id" | "createdAt">) =>
     request<{ id: string }>("/api/messages", { method: "POST", body: JSON.stringify(payload) }),
+};
+
+export const queriesService = {
+  list: () => request<QuerySubmission[]>("/api/queries", undefined, true),
+  create: (payload: Omit<QuerySubmission, "id" | "createdAt">) =>
+    request<{ id: string }>("/api/queries", { method: "POST", body: JSON.stringify(payload) }),
 };

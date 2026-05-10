@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { ScrollReveal } from "@/components/site/scroll-reveal";
 
 export function SectionIntro({
   label,
@@ -14,7 +15,7 @@ export function SectionIntro({
   actionLabel?: string;
 }) {
   return (
-    <div className="flex flex-col gap-6 md:flex-row md:items-start md:justify-between">
+    <ScrollReveal className="flex flex-col gap-6 md:flex-row md:items-start md:justify-between">
       <div className="space-y-3">
         <p className="text-sm font-black uppercase tracking-[0.04em] text-white/72">{label}</p>
         <h2 className="max-w-3xl text-4xl font-black uppercase leading-[0.94] tracking-[-0.05em] text-white md:text-6xl">
@@ -32,6 +33,6 @@ export function SectionIntro({
           </Link>
         ) : null}
       </div>
-    </div>
+    </ScrollReveal>
   );
 }

@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Github, Instagram, Linkedin, MessageCircleMore } from "lucide-react";
+import { ScrollReveal } from "@/components/site/scroll-reveal";
 import type { ContactContent, SiteSettings } from "@/types/content";
 
 export function PublicFooter({
@@ -17,7 +18,8 @@ export function PublicFooter({
   ].filter((item) => item.href);
 
   return (
-    <footer className="border-t border-white/10 bg-black">
+    <ScrollReveal>
+      <footer className="border-t border-white/10 bg-black">
       <div className="relative overflow-hidden">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,106,0,0.24),transparent_52%)]" />
         <div className="relative mx-auto max-w-[1600px] px-5 py-16 md:px-8 md:py-24">
@@ -59,6 +61,7 @@ export function PublicFooter({
           </a>
         </div>
       </div>
-    </footer>
+      </footer>
+    </ScrollReveal>
   );
 }

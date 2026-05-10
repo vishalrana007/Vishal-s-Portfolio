@@ -6,6 +6,7 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Github, Instagram, Linkedin, MessageCircleMore } from "lucide-react";
 import { toast } from "sonner";
+import { ScrollReveal } from "@/components/site/scroll-reveal";
 import { messagesService } from "@/services/firestore";
 import type { ContactContent, ContactSectionSettings } from "@/types/content";
 
@@ -49,7 +50,8 @@ export function ContactBlock({
   });
 
   return (
-    <section id="contact" className="grid gap-10 rounded-[32px] border border-white/10 bg-white/5 p-6 md:grid-cols-[0.95fr_1.05fr] md:p-10">
+    <ScrollReveal>
+      <section id="contact" className="grid gap-10 rounded-[32px] border border-white/10 bg-white/5 p-6 md:grid-cols-[0.95fr_1.05fr] md:p-10">
       <div className="space-y-6">
         <p className="text-sm font-black uppercase tracking-[0.04em] text-white/72">{settings.label}</p>
         <h2 className="max-w-xl text-4xl font-black uppercase leading-[0.94] tracking-[-0.05em] text-white md:text-6xl">
@@ -122,6 +124,7 @@ export function ContactBlock({
           {submitting ? "Sending..." : settings.ctaLabel}
         </button>
       </form>
-    </section>
+      </section>
+    </ScrollReveal>
   );
 }

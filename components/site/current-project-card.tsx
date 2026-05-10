@@ -1,9 +1,11 @@
 import Image from "next/image";
+import { ScrollReveal } from "@/components/site/scroll-reveal";
 import type { CurrentProject } from "@/types/content";
 
-export function CurrentProjectCard({ item }: { item: CurrentProject }) {
+export function CurrentProjectCard({ item, index = 0 }: { item: CurrentProject; index?: number }) {
   return (
-    <article className="overflow-hidden rounded-[28px] border border-white/10 bg-white/5">
+    <ScrollReveal delay={index * 0.08}>
+      <article className="overflow-hidden rounded-[28px] border border-white/10 bg-white/5 transition duration-500 hover:-translate-y-1 hover:bg-white/[0.07]">
       {item.imageUrl ? (
         <div className="relative aspect-[16/10] overflow-hidden border-b border-white/10 bg-[#08111f]">
           <Image
@@ -28,6 +30,7 @@ export function CurrentProjectCard({ item }: { item: CurrentProject }) {
         </h3>
         <p className="text-base leading-8 text-white/76">{item.overview}</p>
       </div>
-    </article>
+      </article>
+    </ScrollReveal>
   );
 }

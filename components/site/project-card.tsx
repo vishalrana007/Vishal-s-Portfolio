@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import type { Project } from "@/types/content";
@@ -40,7 +41,13 @@ export function ProjectCard({ project }: { project: Project }) {
 
   return (
     <>
-      <div className="group overflow-hidden rounded-[24px] border border-white/10 bg-white/5 transition hover:bg-white/[0.07]">
+      <motion.div
+        initial={{ opacity: 0, y: 28 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.2 }}
+        transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
+        className="group overflow-hidden rounded-[24px] border border-white/10 bg-white/5 transition hover:bg-white/[0.07]"
+      >
       <div className="flex h-full flex-col">
         <button
           type="button"
@@ -106,7 +113,7 @@ export function ProjectCard({ project }: { project: Project }) {
           </p>
         </Link>
       </div>
-      </div>
+      </motion.div>
 
       {isGalleryOpen && galleryImages.length ? (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/88 p-4">

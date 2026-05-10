@@ -6,6 +6,7 @@ import { ExperienceCard } from "@/components/site/experience-card";
 import { ProjectCard } from "@/components/site/project-card";
 import { PublicFooter } from "@/components/site/public-footer";
 import { PublicHeader } from "@/components/site/public-header";
+import { ScrollReveal } from "@/components/site/scroll-reveal";
 import { SectionIntro } from "@/components/site/section-intro";
 import { SkillCard } from "@/components/site/skill-card";
 import { getPortfolioData } from "@/lib/portfolio-repository";
@@ -103,6 +104,7 @@ export default async function HomePage() {
       </section>
 
       <main className="mx-auto flex w-full max-w-[1600px] flex-col gap-24 px-5 py-16 md:px-8 md:gap-28 md:py-24">
+        <ScrollReveal asdf="unused" />
         <section className="grid gap-8 md:grid-cols-[0.6fr_1.4fr] md:items-start">
           <div className="space-y-3">
             <p className="text-sm font-black uppercase tracking-[0.04em] text-white/72">

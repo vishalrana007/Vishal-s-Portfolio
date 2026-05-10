@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { Github, Instagram, Linkedin, MessageCircleMore } from "lucide-react";
 import type { ContactContent, SiteSettings } from "@/types/content";
 
 export function PublicFooter({
@@ -8,6 +9,13 @@ export function PublicFooter({
   settings: SiteSettings;
   contact: ContactContent;
 }) {
+  const socialLinks = [
+    { href: contact.linkedin, label: "LinkedIn", icon: Linkedin },
+    { href: contact.github, label: "GitHub", icon: Github },
+    { href: contact.instagram, label: "Instagram", icon: Instagram },
+    { href: contact.whatsapp, label: "WhatsApp", icon: MessageCircleMore },
+  ].filter((item) => item.href);
+
   return (
     <footer className="border-t border-white/10 bg-black">
       <div className="relative overflow-hidden">
@@ -29,9 +37,27 @@ export function PublicFooter({
           <Link href="/#contact">{settings.navigation.contact || "Contact"}</Link>
         </div>
         <p className="text-white/70">{settings.footerText || "Selected work, thoughtfully presented."}</p>
-        <a href={`mailto:${contact.email}`} className="text-base text-white">
-          {contact.email || "hello@example.com"}
-        </a>
+        <div className="flex flex-wrap items-center gap-4">
+          {socialLinks.length ? (
+            <div className="flex items-center gap-2">
+              {socialLinks.map(({ href, label, icon: Icon }) => (
+                <a
+                  key={label}
+                  href={href}
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label={label}
+                  className="rounded-full border border-white/12 p-2 text-white transition hover:border-white/30 hover:bg-white/8"
+                >
+                  <Icon className="h-4 w-4" />
+                </a>
+              ))}
+            </div>
+          ) : null}
+          <a href={`mailto:${contact.email}`} className="text-base text-white">
+            {contact.email || "hello@example.com"}
+          </a>
+        </div>
       </div>
     </footer>
   );

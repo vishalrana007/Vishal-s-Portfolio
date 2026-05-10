@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { Github, Instagram, Linkedin, MessageCircleMore } from "lucide-react";
 import { toast } from "sonner";
 import { messagesService } from "@/services/firestore";
 import type { ContactContent, ContactSectionSettings } from "@/types/content";
@@ -24,6 +25,13 @@ export function ContactBlock({
   contact: ContactContent;
   settings: ContactSectionSettings;
 }) {
+  const socialLinks = [
+    { href: contact.linkedin, label: "LinkedIn", icon: Linkedin },
+    { href: contact.github, label: "GitHub", icon: Github },
+    { href: contact.instagram, label: "Instagram", icon: Instagram },
+    { href: contact.whatsapp, label: "WhatsApp", icon: MessageCircleMore },
+  ].filter((item) => item.href);
+
   const [submitting, setSubmitting] = useState(false);
   const form = useForm<FormValues>({ resolver: zodResolver(schema) });
 
@@ -65,17 +73,20 @@ export function ContactBlock({
           </div>
           <div className="space-y-2">
             <p>Social</p>
-            <div className="flex flex-wrap gap-4 text-base normal-case tracking-normal text-white">
-              {contact.linkedin ? (
-                <a href={contact.linkedin} target="_blank" rel="noreferrer">
-                  LinkedIn
+            <div className="flex flex-wrap gap-3 text-base normal-case tracking-normal text-white">
+              {socialLinks.map(({ href, label, icon: Icon }) => (
+                <a
+                  key={label}
+                  href={href}
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label={label}
+                  className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-2 transition hover:bg-white/10"
+                >
+                  <Icon className="h-4 w-4" />
+                  <span>{label}</span>
                 </a>
-              ) : null}
-              {contact.github ? (
-                <a href={contact.github} target="_blank" rel="noreferrer">
-                  GitHub
-                </a>
-              ) : null}
+              ))}
             </div>
           </div>
         </div>

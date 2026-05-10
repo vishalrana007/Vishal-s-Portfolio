@@ -4,6 +4,7 @@ import { useState } from "react";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
+import { Github, Instagram, Linkedin, MessageCircleMore } from "lucide-react";
 import { toast } from "sonner";
 import { messagesService } from "@/services/firestore";
 import type { ContactContent } from "@/types/content";
@@ -21,6 +22,13 @@ const schema = z.object({
 type FormType = z.infer<typeof schema>;
 
 export function ContactSection({ contact }: { contact: ContactContent }) {
+  const socialLinks = [
+    { href: contact.linkedin, label: "LinkedIn", icon: Linkedin },
+    { href: contact.github, label: "GitHub", icon: Github },
+    { href: contact.instagram, label: "Instagram", icon: Instagram },
+    { href: contact.whatsapp, label: "WhatsApp", icon: MessageCircleMore },
+  ].filter((item) => item.href);
+
   const [submitting, setSubmitting] = useState(false);
   const form = useForm<FormType>({ resolver: zodResolver(schema) });
 
@@ -61,13 +69,19 @@ export function ContactSection({ contact }: { contact: ContactContent }) {
               <p>Location</p>
               <p className="mt-1 text-base normal-case tracking-normal text-zinc-800">{contact.location || "Your location"}</p>
             </div>
-            <div className="flex flex-wrap gap-5 pt-2 text-sm normal-case tracking-normal">
-              <a className="font-medium text-zinc-800 hover:underline" href={contact.linkedin || "#"} target="_blank" rel="noreferrer">
-                LinkedIn
-              </a>
-              <a className="font-medium text-zinc-800 hover:underline" href={contact.github || "#"} target="_blank" rel="noreferrer">
-                GitHub
-              </a>
+            <div className="flex flex-wrap gap-3 pt-2 text-sm normal-case tracking-normal">
+              {socialLinks.map(({ href, label, icon: Icon }) => (
+                <a
+                  key={label}
+                  className="inline-flex items-center gap-2 rounded-full border border-black/10 px-3 py-2 font-medium text-zinc-800 transition hover:bg-black/5"
+                  href={href}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  <Icon className="h-4 w-4" />
+                  <span>{label}</span>
+                </a>
+              ))}
             </div>
           </div>
         </div>

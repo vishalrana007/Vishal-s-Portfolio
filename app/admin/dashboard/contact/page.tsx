@@ -8,7 +8,7 @@ import { Input } from "@/components/ui/input";
 import { contentService } from "@/services/firestore";
 import type { ContactContent } from "@/types/content";
 
-const initial: ContactContent = { email: "", phone: "", location: "", linkedin: "", github: "" };
+const initial: ContactContent = { email: "", phone: "", location: "", linkedin: "", github: "", instagram: "", whatsapp: "" };
 
 export default function ContactAdminPage() {
   const [data, setData] = useState<ContactContent>(initial);
@@ -38,6 +38,8 @@ export default function ContactAdminPage() {
       <Input value={data.location} placeholder="Location" onChange={(e) => setData({ ...data, location: e.target.value })} />
       <Input value={data.linkedin} placeholder="LinkedIn URL" onChange={(e) => setData({ ...data, linkedin: e.target.value })} />
       <Input value={data.github} placeholder="GitHub URL" onChange={(e) => setData({ ...data, github: e.target.value })} />
+      <Input value={data.instagram} placeholder="Instagram URL" onChange={(e) => setData({ ...data, instagram: e.target.value })} />
+      <Input value={data.whatsapp} placeholder="WhatsApp URL" onChange={(e) => setData({ ...data, whatsapp: e.target.value })} />
       <Button onClick={save} disabled={saving}>
         {saving ? "Saving..." : "Save Contact"}
       </Button>

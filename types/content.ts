@@ -100,6 +100,8 @@ export type ContactContent = {
   location: string;
   linkedin: string;
   github: string;
+  instagram: string;
+  whatsapp: string;
 };
 
 export type ContactMessage = {

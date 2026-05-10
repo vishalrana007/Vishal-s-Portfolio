@@ -39,6 +39,8 @@ export const defaultContact: ContactContent = {
   location: "",
   linkedin: "",
   github: "",
+  instagram: "",
+  whatsapp: "",
 };
 
 export const defaultSiteSettings: SiteSettings = {

@@ -27,7 +27,7 @@ const initialState: PortfolioData = {
     typingRoles: [],
   },
   about: { heading: "", bio: "", highlights: [] },
-  contact: { email: "", phone: "", location: "", linkedin: "", github: "" },
+  contact: { email: "", phone: "", location: "", linkedin: "", github: "", instagram: "", whatsapp: "" },
   siteSettings: {
     siteName: "",
     siteTagline: "",

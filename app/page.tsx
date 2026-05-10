@@ -47,30 +47,57 @@ export default async function HomePage() {
         <PublicHeader settings={siteSettings} activePath="/" />
 
         <div className="relative mx-auto flex min-h-screen w-full max-w-[1600px] flex-col justify-end px-5 pb-18 pt-28 md:px-8 md:pb-24 md:pt-36">
-          <div className="max-w-4xl space-y-6">
-            <p className="inline-flex rounded-full border border-white/15 bg-black/35 px-4 py-2 text-sm font-semibold uppercase tracking-[0.06em] text-white/80">
-              {siteSettings.heroBadge}
-            </p>
-            <h1 className="max-w-5xl text-5xl font-black uppercase leading-[0.88] tracking-[-0.08em] text-white sm:text-7xl md:text-[7.5rem]">
-              {hero.title || siteSettings.siteName}
-            </h1>
-            <p className="max-w-3xl text-lg leading-8 text-white/78 md:text-2xl md:leading-10">
-              {hero.subtitle || siteSettings.siteTagline}
-            </p>
-            <div className="flex flex-wrap gap-4 pt-2">
-              <Link
-                href={hero.ctaHref || "/#contact"}
-                className="rounded-[18px] bg-[#ff6a00] px-7 py-3 text-sm font-black uppercase tracking-[0.04em] text-white shadow-[0_0_28px_rgba(255,106,0,0.42)] transition hover:brightness-110"
-              >
-                {hero.ctaText || "Start project"}
-              </Link>
-              <Link
-                href="/projects"
-                className="rounded-[18px] border border-white/20 bg-white/8 px-7 py-3 text-sm font-black uppercase tracking-[0.04em] text-white transition hover:bg-white/14"
-              >
-                {siteSettings.projects.viewAllText}
-              </Link>
+          <div className="grid gap-10 lg:grid-cols-[minmax(0,1.2fr)_320px] lg:items-end xl:grid-cols-[minmax(0,1.25fr)_380px]">
+            <div className="max-w-4xl space-y-6">
+              <p className="inline-flex rounded-full border border-white/15 bg-black/35 px-4 py-2 text-sm font-semibold uppercase tracking-[0.06em] text-white/80">
+                {siteSettings.heroBadge}
+              </p>
+              <h1 className="max-w-5xl text-5xl font-black uppercase leading-[0.88] tracking-[-0.08em] text-white sm:text-7xl md:text-[7.5rem]">
+                {hero.title || siteSettings.siteName}
+              </h1>
+              <p className="max-w-3xl text-lg leading-8 text-white/78 md:text-2xl md:leading-10">
+                {hero.subtitle || siteSettings.siteTagline}
+              </p>
+              <div className="flex flex-wrap gap-4 pt-2">
+                <Link
+                  href={hero.ctaHref || "/#contact"}
+                  className="rounded-[18px] bg-[#ff6a00] px-7 py-3 text-sm font-black uppercase tracking-[0.04em] text-white shadow-[0_0_28px_rgba(255,106,0,0.42)] transition hover:brightness-110"
+                >
+                  {hero.ctaText || "Start project"}
+                </Link>
+                <Link
+                  href="/projects"
+                  className="rounded-[18px] border border-white/20 bg-white/8 px-7 py-3 text-sm font-black uppercase tracking-[0.04em] text-white transition hover:bg-white/14"
+                >
+                  {siteSettings.projects.viewAllText}
+                </Link>
+              </div>
             </div>
+
+            {hero.profileImage ? (
+              <div className="w-full max-w-[320px] justify-self-start lg:justify-self-end">
+                <div className="overflow-hidden rounded-[28px] border border-white/14 bg-white/8 shadow-[0_24px_80px_rgba(0,0,0,0.3)] backdrop-blur-sm">
+                  <div className="relative aspect-[4/5]">
+                    <Image
+                      src={hero.profileImage}
+                      alt={`${hero.title || siteSettings.siteName} host portrait`}
+                      fill
+                      sizes="(min-width: 1280px) 380px, (min-width: 1024px) 320px, 80vw"
+                      className="object-cover"
+                    />
+                  </div>
+                  <div className="flex items-center justify-between gap-4 border-t border-white/10 px-5 py-4">
+                    <div>
+                      <p className="text-[10px] font-black uppercase tracking-[0.22em] text-white/54">Host</p>
+                      <p className="mt-1 text-base font-semibold text-white">{hero.title || siteSettings.siteName}</p>
+                    </div>
+                    <p className="max-w-[8rem] text-right text-xs uppercase tracking-[0.16em] text-white/62">
+                      {hero.role || "Creative direction"}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            ) : null}
           </div>
         </div>
       </section>

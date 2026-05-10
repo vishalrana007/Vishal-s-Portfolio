@@ -13,7 +13,6 @@ export const runtime = "nodejs";
 
 export default async function HomePage() {
   const { hero, about, contact, siteSettings, skills, projects, experience } = await getPortfolioData();
-  console.log("Projects:", projects);
 
   const homepageProjects = [...projects]
     .sort((a, b) => Number(b.featured) - Number(a.featured) || a.title.localeCompare(b.title))

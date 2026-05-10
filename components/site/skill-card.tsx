@@ -31,6 +31,9 @@ export function SkillCard({ skill }: { skill: Skill }) {
         </div>
         <div className="absolute inset-x-0 bottom-0 space-y-3 p-5">
           <h3 className="text-2xl font-black uppercase leading-none tracking-[-0.04em] text-white">{skill.name}</h3>
+          <p className="line-clamp-4 text-sm leading-6 text-white/74">
+            {skill.description || "A practical capability used across product, design, and delivery work."}
+          </p>
           <div className="h-2 rounded-full bg-white/15">
             <div className="h-2 rounded-full bg-[#ff6a00]" style={{ width: `${skill.level}%` }} />
           </div>

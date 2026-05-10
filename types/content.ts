@@ -57,6 +57,7 @@ export type Skill = {
   icon: string;
   level: number;
   category: string;
+  description: string;
 };
 
 export type Project = {

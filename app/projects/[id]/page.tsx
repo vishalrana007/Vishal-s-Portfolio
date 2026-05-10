@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { ProjectGalleryCarousel } from "@/components/site/project-gallery-carousel";
 import { PublicFooter } from "@/components/site/public-footer";
 import { PublicHeader } from "@/components/site/public-header";
 import { getCollectionDocument, getPortfolioData } from "@/lib/portfolio-repository";
@@ -121,19 +122,7 @@ export default async function ProjectDetailsPage(props: PageProps<"/projects/[id
           <p className="text-sm font-black uppercase tracking-[0.04em] text-white/70">Overview</p>
           <p className="text-lg leading-9 text-white/80">{project.description}</p>
           {galleryImages.length ? (
-            <div className="grid gap-4 pt-4 md:grid-cols-2">
-              {galleryImages.map((imageUrl, index) => (
-                <div key={`${imageUrl}-${index}`} className="relative aspect-[4/3] overflow-hidden rounded-[24px] border border-white/10">
-                  <Image
-                    src={imageUrl}
-                    alt={`${project.title} gallery ${index + 2}`}
-                    fill
-                    sizes="(max-width: 767px) 100vw, 50vw"
-                    className="object-cover"
-                  />
-                </div>
-              ))}
-            </div>
+            <ProjectGalleryCarousel images={galleryImages} title={project.title} />
           ) : null}
         </section>
       </main>

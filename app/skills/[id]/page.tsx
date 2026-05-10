@@ -33,13 +33,13 @@ export default async function SkillDetailsPage(props: PageProps<"/skills/[id]">)
               {skill.name}
             </h1>
             <p className="max-w-2xl text-lg leading-8 text-white/78">
-              A practical capability used in real projects and shown separately so the homepage stays curated instead of overloaded.
+              {skill.description || "A practical capability used in real projects and shown separately so the homepage stays curated instead of overloaded."}
             </p>
           </div>
           <div className="overflow-hidden rounded-[32px] border border-white/10 bg-white/5">
             <div className="relative aspect-[5/4]">
               {skill.icon ? (
-                <Image src={skill.icon} alt={skill.name} fill sizes="(max-width: 767px) 100vw, 50vw" className="object-cover" />
+                <Image src={skill.icon} alt={skill.name} fill sizes="(max-width: 767px) 100vw, 50vw" className="object-contain" />
               ) : (
                 <div className="absolute inset-0 bg-[linear-gradient(135deg,#23140a,#050505)]" />
               )}
@@ -59,7 +59,7 @@ export default async function SkillDetailsPage(props: PageProps<"/skills/[id]">)
             <div className="h-3 rounded-full bg-[#ff6a00]" style={{ width: `${skill.level}%` }} />
           </div>
           <p className="text-lg leading-8 text-white/78">
-            This score represents how consistently this skill shows up across shipped work, client execution, and portfolio-quality presentation.
+            {skill.description || "This score represents how consistently this skill shows up across shipped work, client execution, and portfolio-quality presentation."}
           </p>
         </section>
       </main>

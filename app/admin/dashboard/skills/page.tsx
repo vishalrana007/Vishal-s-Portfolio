@@ -6,11 +6,12 @@ import { ImageUploader } from "@/components/admin/image-uploader";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
 import { skillsService } from "@/services/firestore";
 import type { Skill } from "@/types/content";
 
 type Draft = Omit<Skill, "id">;
-const initialDraft: Draft = { name: "", icon: "", level: 50, category: "" };
+const initialDraft: Draft = { name: "", icon: "", level: 50, category: "", description: "" };
 
 export default function SkillsAdminPage() {
   const [items, setItems] = useState<Skill[]>([]);
@@ -48,6 +49,12 @@ export default function SkillsAdminPage() {
         <Input value={draft.name} placeholder="Name" onChange={(e) => setDraft({ ...draft, name: e.target.value })} />
         <ImageUploader value={draft.icon} onChange={(value) => setDraft({ ...draft, icon: value })} />
         <Input value={draft.category} placeholder="Category" onChange={(e) => setDraft({ ...draft, category: e.target.value })} />
+        <Textarea
+          value={draft.description}
+          placeholder="Description"
+          rows={4}
+          onChange={(e) => setDraft({ ...draft, description: e.target.value })}
+        />
         <Input
           type="number"
           min={0}
@@ -75,6 +82,7 @@ export default function SkillsAdminPage() {
                       icon: item.icon,
                       level: item.level,
                       category: item.category,
+                      description: item.description ?? "",
                     });
                   }}
                 >

@@ -2,6 +2,7 @@ import Image from "next/image";
 import { ProjectCard } from "@/components/site/project-card";
 import { PublicFooter } from "@/components/site/public-footer";
 import { PublicHeader } from "@/components/site/public-header";
+import { ScrollReveal } from "@/components/site/scroll-reveal";
 import { SectionIntro } from "@/components/site/section-intro";
 import { getPortfolioData } from "@/lib/portfolio-repository";
 
@@ -33,8 +34,8 @@ export default async function ProjectsPage() {
       </section>
       <main className="mx-auto max-w-[1600px] px-5 py-16 md:px-8 md:py-20">
         <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-4">
-          {orderedProjects.map((project) => (
-            <ProjectCard key={project.id} project={project} />
+          {orderedProjects.map((project, index) => (
+            <ProjectCard key={project.id} project={project} index={index} />
           ))}
         </div>
       </main>

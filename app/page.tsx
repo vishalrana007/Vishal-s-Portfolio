@@ -49,7 +49,7 @@ export default async function HomePage() {
 
         <div className="relative mx-auto flex min-h-screen w-full max-w-[1600px] flex-col justify-end px-5 pb-18 pt-28 md:px-8 md:pb-24 md:pt-36">
           <div className="grid gap-10 lg:grid-cols-[minmax(0,1.2fr)_320px] lg:items-end xl:grid-cols-[minmax(0,1.25fr)_380px]">
-            <div className="max-w-4xl space-y-6">
+            <ScrollReveal className="max-w-4xl space-y-6" y={36} duration={0.8}>
               <p className="inline-flex rounded-full border border-white/15 bg-black/35 px-4 py-2 text-sm font-semibold uppercase tracking-[0.06em] text-white/80">
                 {siteSettings.heroBadge}
               </p>
@@ -73,10 +73,10 @@ export default async function HomePage() {
                   {siteSettings.projects.viewAllText}
                 </Link>
               </div>
-            </div>
+            </ScrollReveal>
 
             {hero.profileImage ? (
-              <div className="w-full max-w-[320px] justify-self-start lg:justify-self-end">
+              <ScrollReveal className="w-full max-w-[320px] justify-self-start lg:justify-self-end" delay={0.12} y={40} duration={0.8}>
                 <div className="overflow-hidden rounded-[28px] border border-white/14 bg-white/8 shadow-[0_24px_80px_rgba(0,0,0,0.3)] backdrop-blur-sm">
                   <div className="relative aspect-[4/5]">
                     <Image
@@ -97,15 +97,15 @@ export default async function HomePage() {
                     </p>
                   </div>
                 </div>
-              </div>
+              </ScrollReveal>
             ) : null}
           </div>
         </div>
       </section>
 
       <main className="mx-auto flex w-full max-w-[1600px] flex-col gap-24 px-5 py-16 md:px-8 md:gap-28 md:py-24">
-        <ScrollReveal asdf="unused" />
-        <section className="grid gap-8 md:grid-cols-[0.6fr_1.4fr] md:items-start">
+        <ScrollReveal>
+          <section className="grid gap-8 md:grid-cols-[0.6fr_1.4fr] md:items-start">
           <div className="space-y-3">
             <p className="text-sm font-black uppercase tracking-[0.04em] text-white/72">
               {siteSettings.aboutLabel || "About"}
@@ -128,7 +128,8 @@ export default async function HomePage() {
               </div>
             ) : null}
           </div>
-        </section>
+          </section>
+        </ScrollReveal>
 
         {siteSettings.projects.visible ? (
           <section className="space-y-10">
@@ -140,8 +141,8 @@ export default async function HomePage() {
               actionLabel={siteSettings.projects.viewAllText}
             />
             <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-4">
-              {homepageProjects.map((project) => (
-                <ProjectCard key={project.id} project={project} />
+              {homepageProjects.map((project, index) => (
+                <ProjectCard key={project.id} project={project} index={index} />
               ))}
             </div>
           </section>
@@ -155,8 +156,8 @@ export default async function HomePage() {
               description={siteSettings.currentWork.description}
             />
             <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
-              {homepageCurrentProjects.map((item) => (
-                <CurrentProjectCard key={item.id} item={item} />
+              {homepageCurrentProjects.map((item, index) => (
+                <CurrentProjectCard key={item.id} item={item} index={index} />
               ))}
             </div>
           </section>
@@ -172,8 +173,8 @@ export default async function HomePage() {
               actionLabel={siteSettings.skills.viewAllText}
             />
             <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
-              {homepageSkills.map((skill) => (
-                <SkillCard key={skill.id} skill={skill} />
+              {homepageSkills.map((skill, index) => (
+                <SkillCard key={skill.id} skill={skill} index={index} />
               ))}
             </div>
           </section>

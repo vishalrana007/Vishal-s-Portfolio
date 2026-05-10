@@ -24,8 +24,8 @@ export default async function SkillsPage() {
       </section>
       <main className="mx-auto max-w-[1600px] px-5 py-16 md:px-8 md:py-20">
         <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
-          {orderedSkills.map((skill) => (
-            <SkillCard key={skill.id} skill={skill} />
+          {orderedSkills.map((skill, index) => (
+            <SkillCard key={skill.id} skill={skill} index={index} />
           ))}
         </div>
       </main>

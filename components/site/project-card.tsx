@@ -6,7 +6,7 @@ import Image from "next/image";
 import Link from "next/link";
 import type { Project } from "@/types/content";
 
-export function ProjectCard({ project }: { project: Project }) {
+export function ProjectCard({ project, index = 0 }: { project: Project; index?: number }) {
   const [imageLayout, setImageLayout] = useState<"landscape" | "portrait">("landscape");
   const [isGalleryOpen, setIsGalleryOpen] = useState(false);
   const [activeImageIndex, setActiveImageIndex] = useState(0);
@@ -45,7 +45,7 @@ export function ProjectCard({ project }: { project: Project }) {
         initial={{ opacity: 0, y: 28 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.2 }}
-        transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
+        transition={{ duration: 0.65, delay: index * 0.07, ease: [0.22, 1, 0.36, 1] }}
         className="group overflow-hidden rounded-[24px] border border-white/10 bg-white/5 transition hover:bg-white/[0.07]"
       >
       <div className="flex h-full flex-col">

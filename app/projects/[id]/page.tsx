@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { ProjectGalleryCarousel } from "@/components/site/project-gallery-carousel";
 import { PublicFooter } from "@/components/site/public-footer";
 import { PublicHeader } from "@/components/site/public-header";
+import { ScrollReveal } from "@/components/site/scroll-reveal";
 import { getCollectionDocument, getPortfolioData } from "@/lib/portfolio-repository";
 import type { Project } from "@/types/content";
 
@@ -32,7 +33,7 @@ export default async function ProjectDetailsPage(props: PageProps<"/projects/[id
             Back to projects
           </Link>
           <div className="grid gap-8 xl:grid-cols-[minmax(0,1.08fr)_minmax(420px,0.92fr)] xl:items-center">
-            <div className="space-y-6">
+            <ScrollReveal className="space-y-6">
               <p className="text-sm font-black uppercase tracking-[0.04em] text-white/70">
                 {project.featured ? "Featured project" : "Project"}{project.category ? ` | ${project.category}` : ""}
               </p>
@@ -64,8 +65,8 @@ export default async function ProjectDetailsPage(props: PageProps<"/projects/[id
                   </a>
                 ) : null}
               </div>
-            </div>
-            <div>
+            </ScrollReveal>
+            <ScrollReveal delay={0.1}>
               <div className="overflow-hidden rounded-[30px] border border-white/10 bg-white/5 shadow-[0_24px_80px_rgba(0,0,0,0.3)]">
                 {project.imageUrls[0] ? (
                   <div className="relative aspect-[16/10]">
@@ -82,9 +83,9 @@ export default async function ProjectDetailsPage(props: PageProps<"/projects/[id
                   <div className="aspect-[16/10] bg-[linear-gradient(135deg,#23140a,#050505)]" />
                 )}
               </div>
-            </div>
+            </ScrollReveal>
           </div>
-          <div className="mt-8 space-y-4 rounded-[28px] border border-white/10 bg-black/35 p-6 backdrop-blur">
+          <ScrollReveal className="mt-8 space-y-4 rounded-[28px] border border-white/10 bg-black/35 p-6 backdrop-blur" delay={0.08}>
             <p className="text-sm font-black uppercase tracking-[0.04em] text-white/70">Project facts</p>
             <div className="grid gap-3 text-sm text-white/78 md:grid-cols-3">
               {project.client ? <p><span className="text-white">Client:</span> {project.client}</p> : null}
@@ -113,18 +114,20 @@ export default async function ProjectDetailsPage(props: PageProps<"/projects/[id
                 ))}
               </div>
             </div>
-          </div>
+          </ScrollReveal>
         </div>
       </section>
 
       <main className="mx-auto max-w-[1200px] px-5 py-16 md:px-8 md:py-20">
-        <section className="space-y-6 rounded-[32px] border border-white/10 bg-white/5 p-6 md:p-8">
+        <ScrollReveal>
+          <section className="space-y-6 rounded-[32px] border border-white/10 bg-white/5 p-6 md:p-8">
           <p className="text-sm font-black uppercase tracking-[0.04em] text-white/70">Overview</p>
           <p className="text-lg leading-9 text-white/80">{project.description}</p>
           {galleryImages.length ? (
             <ProjectGalleryCarousel images={galleryImages} title={project.title} />
           ) : null}
-        </section>
+          </section>
+        </ScrollReveal>
       </main>
       <PublicFooter settings={siteSettings} contact={contact} />
     </div>

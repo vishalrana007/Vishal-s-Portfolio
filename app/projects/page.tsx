@@ -8,16 +8,15 @@ import { getPortfolioData } from "@/lib/portfolio-repository";
 export const runtime = "nodejs";
 
 export default async function ProjectsPage() {
-  const { projects, siteSettings, contact } = await getPortfolioData();
+  const { hero, projects, siteSettings, contact } = await getPortfolioData();
   const orderedProjects = [...projects].sort((a, b) => Number(b.featured) - Number(a.featured) || a.title.localeCompare(b.title));
-  const heroImage = orderedProjects[0]?.imageUrls[0];
 
   return (
     <div className="bg-[#050505] text-white">
       <section className="relative overflow-hidden">
         <div className="relative min-h-[70vh]">
-          {heroImage ? (
-            <Image src={heroImage} alt={siteSettings.projects.heading} fill priority sizes="100vw" className="object-cover" />
+          {hero.backgroundImage ? (
+            <Image src={hero.backgroundImage} alt={siteSettings.projects.heading} fill priority sizes="100vw" className="object-cover" />
           ) : (
             <div className="absolute inset-0 bg-[linear-gradient(135deg,#23140a,#050505)]" />
           )}
